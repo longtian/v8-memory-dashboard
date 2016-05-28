@@ -2,9 +2,9 @@
   "name": "v8-memory-dashboard",
   "version": "0.0.0",
   "description": "v8 memory dashboard",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
     "compile":"babel src/app.js --minified --no-comments -o public/js/app.js "
   },
   "repository": {

@@ -1,5 +1,11 @@
 const express = require('express');
 const session = require('express-session');
+const assert = require('assert');
+
+assert(process.env.WILDDOG_URL);
+assert(process.env.WILDDOG_SECRET);
+assert(process.env.CLIENT_ID);
+assert(process.env.CLIENT_SECRET);
 
 // routers
 const callback = require('./routers/callback');
