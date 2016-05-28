@@ -1,6 +1,8 @@
 # v8-memory-dashboard
 基于 `野狗` 打造一个 `v8` 内存分配的实时仪表盘。
 
+![animation](./public/animation.gif);
+
 ## 使用步骤
 
 - 在 `Node.JS` 应用里装上 [v8-memory-dashboard-client](https://github.com/wyvernnot/v8-memory-dashboard-client) 模块, 注意 `Node.JS` 版本最低要求是 `6.0.0`
