@@ -1,4 +1,7 @@
-(function () {
+$(function () {
+
+  var memory_property = 'physical_space_size';
+  var lastHeapSpaces = {};
 
   Highcharts.setOptions({
     global: {
@@ -89,21 +92,28 @@
       });
     }
 
+    function drawHeapSpaces(){
+      var data = lastHeapSpaces.map(item => ({
+        name: item.space_name,
+        value: item[memory_property]
+      }));
+      treemap.series[0].setData(data);
+      treemap.setTitle({
+        text:`heapSpaceStatistics - ${memory_property}`
+      })
+    }
+
     ref.on('value', function (snapshot) {
       var hostInfo = snapshot.val();
 
-      var data = hostInfo.heapSpaceStatistics.map(item => ({
-          name: item.space_name,
-          value: item.space_used_size
-        })
-        )
-        ;
+      lastHeapSpaces = hostInfo.heapSpaceStatistics;
+      drawHeapSpaces();
 
       $('#info code').text(JSON.stringify(hostInfo, null, 2));
       $('#info').each(function (i, block) {
         hljs.highlightBlock(block);
       });
-      treemap.series[0].setData(data);
+
 
       const now = Date.now();
       addSeriesData('heapTotal', now, hostInfo.memoryUsage.heapTotal);
@@ -113,7 +123,16 @@
 
     });
 
+    $('#memory_property button').click(function(){
+      memory_property = $(this).text();
+      $('#memory_property button.active').removeClass('active');
+      $(this).addClass('active');
+      drawHeapSpaces();
+    })
+
   };
 
   ref.authWithCustomToken(token, init);
-})();
+
+
+});

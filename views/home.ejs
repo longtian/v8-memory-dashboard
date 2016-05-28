@@ -22,14 +22,14 @@
   <div class="row">
     <div>
       <div class="col-md-12">
-        <div>
+        <div class="page-header">
           <h1>
             你好, <%- name %>
           </h1>
         </div>
         <div class="panel panel-default">
           <div class="panel-heading">
-            添加新机器
+            注册机器
           </div>
           <div class="panel-body">
                         <pre>
@@ -57,6 +57,12 @@ client.register({
             heap
           </div>
           <div class="panel-body">
+            <div id="memory_property" class="btn-group" role="group" aria-label="...">
+              <button type="button" class="btn btn-default">physical_space_size</button>
+              <button type="button" class="btn btn-default">space_available_size</button>
+              <button type="button" class="btn btn-default">space_size</button>
+              <button type="button" class="btn btn-default">space_used_size</button>
+            </div>
             <div id="heap"></div>
           </div>
         </div>

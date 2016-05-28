@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "compile":"babel src/app.js --minified --no-comments -o public/js/app.js "
+    "compile":"babel src/app.js --minified --no-comments -o public/js/app.js ",
+    "dev":"babel src/app.js --watch --minified --no-comments -o public/js/app.js "
   },
   "repository": {
     "type": "git",
