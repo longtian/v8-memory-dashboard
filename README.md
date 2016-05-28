@@ -37,12 +37,12 @@ docker run -p 8080:8080 wyvernnot/v8-memory-dashboard \
 
 ![](./public/v8-memory-dashboard.png)
 
-- 通过 `Github oAuth` 取得 `Github` 用户信息
+- 通过 `Github OAuth` 取得 `Github` 用户信息
 - 利用野狗的密匙 `WILDDOG_SECRET` 并结合 `GITHUB` 用户信息, 使用 `JWT` 算法生成一个包含用户 `UID` 的 `token`
 - 用户在浏览器端通过该 `token` 连接到 `Wilddog` 服务器并通过认证
 - `v8-memory-dashboard-client` 会定期把数据写入 `Wilddog` 后台
 - `Wilddog` 后台在写入的时候不做认证, 但是读取的时候做认证, 保证用户登录后只能看到自己的数据
-- `dashboard` 服务器负责 `Github oAuth` 过程和生成 `JWT` 的 `token`, 本身不存储或转发任何 `v8` 的数据
+- `dashboard` 服务器负责 `Github OAuth` 过程和生成 `JWT` 的 `token`, 本身不存储或转发任何 `v8` 的数据
 
 ## 规则表达式
 
