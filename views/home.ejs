@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="WILDDOG_TOKEN" content="<%- token %>"/>
+  <meta name="WILDDOG_REF" content="<%- url %>/<%- uid %>"/>
+  <title>V8 memory dashboard</title>
+  <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="//apps.bdimg.com/libs/highlight.js/9.1.0/styles/default.min.css"/>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="//cdn.wilddog.com/js/client/current/wilddog.js"></script>
+  <script src="//apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <script src="//cdn.bootcss.com/highcharts/4.2.5/highcharts.js"></script>
+  <script src="//cdn.bootcss.com/highcharts/4.2.5/modules/treemap.js"></script>
+  <script src="//cdn.bootcss.com/numeral.js/1.5.3/numeral.min.js"></script>
+  <script src="../../js/app.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div>
+      <div class="col-md-12">
+        <div>
+          <h1>
+            你好, <%- name %>
+          </h1>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            添加新机器
+          </div>
+          <div class="panel-body">
+                        <pre>
+<code class="javascript">
+const client = require('v8-memory-dashboard-client');
+client.register({
+  url: "<%- url %>/<%- uid %>.json"
+});
+</code>
+                        </pre>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            内存
+          </div>
+          <div class="panel-body">
+            <div id="mem"></div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            heap
+          </div>
+          <div class="panel-body">
+            <div id="heap"></div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            机器信息
+          </div>
+          <div class="panel-body">
+            <pre id="info"><code class="json"></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
