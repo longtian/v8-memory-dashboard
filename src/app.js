@@ -125,10 +125,13 @@ $(function () {
 
     $('#memory_property button').click(function(){
       memory_property = $(this).text();
+      mixpanel.track('ChangeMemoryType', {
+        memoryType: memory_property
+      });
       $('#memory_property button.active').removeClass('active');
       $(this).addClass('active');
       drawHeapSpaces();
-    })
+    });
 
   };
 

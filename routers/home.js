@@ -20,11 +20,10 @@ const home = (req, res)=> {
 
   res.render('home', {
     token: token,
-    login: user.login,
-    avatar_url: user.avatar_url,
-    name: user.name,
+    user: user,
     uid: salt(user.id),
-    url: process.env.WILDDOG_URL
+    url: process.env.WILDDOG_URL,
+    MIXPANEL_TOKEN: process.env.MIXPANEL_TOKEN
   });
 };
 

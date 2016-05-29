@@ -23,7 +23,8 @@ docker run -p 8080:8080 wyvernnot/v8-memory-dashboard \
   -e WILDDOG_URL=<>     \
   -e WILDDOG_SECRET=<>  \
   -e CLIENT_ID=<>       \
-  -e CLIENT_SECRET=<>
+  -e CLIENT_SECRET=<>   \
+  -e MIXPANEL_TOKEN=<>
 ```
 
 ### 配置
@@ -34,6 +35,7 @@ docker run -p 8080:8080 wyvernnot/v8-memory-dashboard \
 |WILDDOG_SECRET      |  野狗超级密匙, 用于生成 token  |
 |CLIENT_ID           |  Github OAuth CLIENT_ID     |
 |CLIENT_SECRET       |  Github OAuth CLIENT_SECRET |
+|MIXPANEL_TOKEN      |  MIXPANEL_TOKEN             |
 
 ## 原理
 
