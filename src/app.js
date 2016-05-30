@@ -1,6 +1,6 @@
 $(function () {
 
-  var memory_property = 'physical_space_size';
+  var memory_property = 'space_used_size';
   var lastHeapSpaces = {};
 
   Highcharts.setOptions({
@@ -49,7 +49,10 @@ $(function () {
             },
             shared: true
           },
-          connectNulls: true
+          connectNulls: true,
+          marker: {
+            enabled: false
+          }
         },
         area: {
           stacking: 'normal'
@@ -58,18 +61,17 @@ $(function () {
       series: [{
         id: 'rss',
         name: 'rss',
-        type: 'area',
-        stack: 0
+        type: 'areaspline'
       }, {
         id: 'heapTotal',
         name: 'heapTotal',
-        type: 'area',
-        stack: 1
+        type: 'areaspline',
+        dashStyle: 'dot',
+        fillOpacity: 0.3
       }, {
         id: 'heapUsed',
         name: 'heapUsed',
-        type: 'area',
-        stack: 1
+        type: 'areaspline'
       }]
     });
 
@@ -92,14 +94,14 @@ $(function () {
       });
     }
 
-    function drawHeapSpaces(){
+    function drawHeapSpaces() {
       var data = lastHeapSpaces.map(item => ({
         name: item.space_name,
         value: item[memory_property]
       }));
       treemap.series[0].setData(data);
       treemap.setTitle({
-        text:`heapSpaceStatistics - ${memory_property}`
+        text: `heapSpaceStatistics - ${memory_property}`
       })
     }
 
@@ -114,16 +116,14 @@ $(function () {
         hljs.highlightBlock(block);
       });
 
-
-      const now = Date.now();
-      addSeriesData('heapTotal', now, hostInfo.memoryUsage.heapTotal);
-      addSeriesData('heapUsed', now, hostInfo.memoryUsage.heapUsed);
-      addSeriesData('rss', now, hostInfo.memoryUsage.rss);
-      addSeriesData('freemem', now, hostInfo.freemem);
+      addSeriesData('heapTotal', hostInfo.timestamp, hostInfo.memoryUsage.heapTotal);
+      addSeriesData('heapUsed', hostInfo.timestamp, hostInfo.memoryUsage.heapUsed);
+      addSeriesData('rss', hostInfo.timestamp, hostInfo.memoryUsage.rss);
+      addSeriesData('freemem', hostInfo.timestamp, hostInfo.freemem);
 
     });
 
-    $('#memory_property button').click(function(){
+    $('#memory_property button').click(function () {
       memory_property = $(this).text();
       mixpanel.track('ChangeMemoryType', {
         memoryType: memory_property
@@ -136,6 +136,5 @@ $(function () {
   };
 
   ref.authWithCustomToken(token, init);
-
 
 });

@@ -4,9 +4,10 @@
   "description": "v8 memory dashboard",
   "main": "server.js",
   "scripts": {
+    "prestart": "npm run compile",
     "start": "node server.js",
-    "compile":"babel src/app.js --minified --no-comments -o public/js/app.js ",
-    "dev":"babel src/app.js --watch --minified --no-comments -o public/js/app.js "
+    "compile": "babel src/app.js --minified --no-comments -o public/js/app.js ",
+    "dev": "babel src/app.js --watch --minified --no-comments -o public/js/app.js "
   },
   "repository": {
     "type": "git",
